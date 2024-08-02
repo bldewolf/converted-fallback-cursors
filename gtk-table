@@ -1,0 +1,45 @@
+# pulled from https://gitlab.gnome.org/GNOME/gtk/-/blob/main/gdk/x11/gdkcursor-x11.c#L104
+# pointer line altered to use hand2 instead of hand1
+
+static const struct {
+  const char *css_name;
+  const char *traditional_name;
+  int cursor_glyph;
+} name_map[] = {
+  { "default",      "left_ptr",            XC_left_ptr, },
+  { "help",         "question_arrow",      XC_question_arrow },
+  { "context-menu", "left_ptr",            XC_left_ptr },
+  { "pointer",      "hand",                XC_hand2 },
+  { "progress",     "left_ptr_watch",      XC_watch },
+  { "wait",         "watch",               XC_watch },
+  { "cell",         "crosshair",           XC_plus },
+  { "crosshair",    "cross",               XC_crosshair },
+  { "text",         "xterm",               XC_xterm },
+  { "vertical-text","xterm",               XC_xterm },
+  { "alias",        "dnd-link",            XC_target },
+  { "copy",         "dnd-copy",            XC_target },
+  { "move",         "dnd-move",            XC_target },
+  { "no-drop",      "dnd-none",            XC_pirate },
+  { "dnd-ask",      "dnd-copy",            XC_target }, /* not CSS, but we want to guarantee it anyway */
+  { "not-allowed",  "crossed_circle",      XC_pirate },
+  { "grab",         "hand2",               XC_hand2 },
+  { "grabbing",     "hand2",               XC_hand2 },
+  { "all-scroll",   "left_ptr",            XC_left_ptr },
+  { "col-resize",   "h_double_arrow",      XC_sb_h_double_arrow },
+  { "row-resize",   "v_double_arrow",      XC_sb_v_double_arrow },
+  { "n-resize",     "top_side",            XC_top_side },
+  { "e-resize",     "right_side",          XC_right_side },
+  { "s-resize",     "bottom_side",         XC_bottom_side },
+  { "w-resize",     "left_side",           XC_left_side },
+  { "ne-resize",    "top_right_corner",    XC_top_right_corner },
+  { "nw-resize",    "top_left_corner",     XC_top_left_corner },
+  { "se-resize",    "bottom_right_corner", XC_bottom_right_corner },
+  { "sw-resize",    "bottom_left_corner",  XC_bottom_left_corner },
+  { "ew-resize",    "h_double_arrow",      XC_sb_h_double_arrow },
+  { "ns-resize",    "v_double_arrow",      XC_sb_v_double_arrow },
+  { "nesw-resize",  "fd_double_arrow",     XC_X_cursor },
+
+  { "nwse-resize",  "bd_double_arrow",     XC_X_cursor },
+  { "zoom-in",      "left_ptr",            XC_draped_box },
+  { "zoom-out",     "left_ptr",            XC_draped_box }
+};

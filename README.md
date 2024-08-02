@@ -56,3 +56,18 @@ INCREDIBLY helpful cursor theme for realizing what cursors are missing
 ### https://www.x.org/docs/BDF/bdf.pdf
 
 Fantastic documentation of the BDF format. A+ thanks a lot wish everything had a doc like this
+
+# to build
+
+Please don't judge me, I really hope I only have to make this cursor theme once
+
+```
+mkdir work
+mkdir cursors
+./bdftoxcursor.pl < cursor.bdf
+./addlinks.pl < gtk-table
+mkdir x11-fallback
+echo "[Icon Theme]" > x11-fallback/index.theme
+cp -r cursors x11-fallback
+tar czf x11-fallback-cursors-1.tar.gz x11-fallback/
+```

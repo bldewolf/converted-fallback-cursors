@@ -41,7 +41,7 @@ while(<>) {
 
 foreach my $key (sort keys %glyphs) {
 	next if($key =~ /_mask$/);
-#	next if($key ne "left_ptr");
+#	next if($key ne "target");
 	my $src = $glyphs{$key};
 	my $mask = $glyphs{$key . "_mask"};
 
@@ -56,13 +56,17 @@ foreach my $key (sort keys %glyphs) {
 		for my $y (0 .. $mask->[0][1]) {
 			my $alpha = $mask->[1][$y][$x] ? 255 : 0;
 			my $color = 255;
+			my ($sw, $sh, $sox, $soy) = @{$src->[0]};
+			my ($mw, $mh, $mox, $moy) = @{$mask->[0]};
 			# src and mask are aligned to each other by their
 			# origins described in the BBX line.  Calculate this
 			# into $dx and $dy
-			my $dx = $mask->[0][2] - $src->[0][2];
-			my $dy = $mask->[0][3] - $src->[0][3];
+			my $dx = $mox - $sox;
+			# the origin for origin is the bottom left so we have
+			# adjust for height differences
+			my $dy = $sh - $mh + $soy - $moy;
 			if($alpha) {
-				if(inbound($x + $dx, $src->[0][0]) and inbound($y + $dy, $src->[0][1])) {
+				if(inbound($x + $dx, $sw) and inbound($y + $dy, $sh)) {
 					$color = $src->[1][$y + $dy][$x + $dx] ? 0 : 255;
 				}
 				$image->SetPixel(x=>$x, y=>$y, color=> [$color, $color, $color, 1.0]);
